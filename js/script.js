@@ -7,78 +7,79 @@ project 1 - Random Quote Generator
  ***/
 let quotes = [
     {
-    quote:`It is better to fail in originality than to succeed in imitation.`,
-    source:"Herman Melville",
+    quote:`We live in an age when pizza gets to your home before the police.`,
+    source:"Jeff Arder",
     citation:"Internet",
     year: 1998,
-    tag:"motivational"
+    tag:"food"
     },
     {
-    quote:`The secret of getting ahead is getting started`,
-    source:"Mark Twain",
+    quote:`Hunger is a good cook.`,
+    source:"Proverb",
     citation:"Web",
-    year: 1987,
-    tag:"motivational"
+    year: null,
+    tag:"food"
     },
     {
-     quote:` The only impossible journey is the one you never begin`,
-     source:"Tony Robbins",
+     quote:`The first law of dietetics seems to be if it tastes good, its bad for you.`,
+     source:"Barbara Cartland",
      citation:"Books",
      year: 1993 ,
-     tag:"motivational"
+     tag:"food"
     },
     {
-    quote:`The best way to get started is to quit talking and begin doing`,
-    source:"Walt Disney",
-    citation:"Goolge",
-    year: 2019 ,
-    tag:"motivational" 
+    quote:`It is a difficult matter to argue with the belly since it has no ears.`,
+    source:"Cato The Elder",
+    citation:null,
+    year: null ,
+    tag:"food" 
     },
     {
-        quote:`Don’t be afraid to give up the good for the great `,
-        source:"John D. Rockefeller",
+        quote:`	When a man's stomach is full it makes no difference whether he is rich or poor. `,
+        source:"Euripides",
         citation:"Twitter",
         year: 2012 ,
-        tag:"Prophet"
+        tag:"food"
     },
     {
-        quote:`We generate fears while we sit. We overcome them by action`,
-        source:"Dr. Henry Link",
+        quote:`	One should eat to live, not live to eat.`,
+        source:"Benjamin Franklin",
         citation:"Pinterest",
-        year: 2008  ,
-        tag:"Prophet"
+        year: null  ,
+        tag:"food"
     },
     {
         quote:`Dream big and dare to fail `,
         source:"Norman Vaughan",
         citation:"Internet",
         year: 2004 ,
-        tag:"Prophet" 
+        tag:"success" 
     },
     {
         quote:` I never dreamed about success; I worked for it`,
         source:"Estee Lauder",
-        citation:"Internet",
+        citation:null,
         year: 1780,
-        tag:"Prophet" 
+        tag:"success" 
     },
     {
-        quote:`It’s not whether you get knocked down, it’s whether you get up`,
+        quote:`Success is not final; failure is not fatal: It is the courage to continue that counts.`,
         source:"Vince Lombardi",
         citation:"Poster",
         year: 1989 ,
-        tag:"Prophet"
+        tag:"success"
     },
     {
-        quote:`It’s during our darkest moments that we must focus to see the light `,
-        source:"Aristotle",
+        quote:`The road to success and the road to failure are almost exactly the same `,
+        source:"Colin R. Davis",
         citation:"The Book",
         year: 2000  ,
-        tag:"Prophet"
+        tag:"success"
     }
     
     
     ]
+
 
 //Get the elements
 let quoteDisplay = document.querySelector('.quote');
@@ -86,7 +87,10 @@ let source = document.querySelector('.source');
 let citation = document.querySelector('.citation');
 let year = document.querySelector('.year');
 let quoteBtn = document.querySelector('.load-quote');
-
+let arrSuccess = quotes.filter(quote => (quote.tag === "success"));
+let arrFood  = quotes.filter(quote => (quote.tag === "food"));
+// console.log(arrSuccess);
+// console.log(arrMotive);
 /***
  * `getRandomQuote` function
  ***/
@@ -101,7 +105,35 @@ function getRandomQuote(){
 //    console.log(quotes[randomQuoteIndex].quote);
 }
 
+function sucessQuote(){
+    let randomSucess  = Math.floor(Math.random()* arrSuccess.length);
+    quoteDisplay.innerText = arrSuccess[randomSucess].quote;
+    source.innerText = arrSuccess[randomSucess].source;
+    citation.innerText = arrSuccess[randomSucess].citation;
+    year.textContent  = arrSuccess[randomSucess].year;
+    source.innerText = `${source.innerText}, ${citation.innerText}, ${year.innerText}`
+}
 
+let successBtn = document.querySelector('.success-quote');
+successBtn.addEventListener('click', function(){
+    sucessQuote();
+    randColor();
+})
+
+function foodQuote(){
+    let randFoodQuote = Math.floor(Math.random()*arrFood.length);
+    quoteDisplay.innerText = arrFood[randFoodQuote].quote;
+    source.innerText  = arrFood[randFoodQuote].source;
+    citation.innerText = arrFood[randFoodQuote].citation;
+    year.innerText  = arrFood[randFoodQuote].year;
+    source.innerText = `${source.innerText}, ${citation.innerText}, ${year.innerText}`
+
+}
+let foofdBtn  = document.querySelector('.food-quote');
+foofdBtn.addEventListener('click', function(){
+    foodQuote();
+    randColor();
+})
 
 /***
  * `printQuote` function
