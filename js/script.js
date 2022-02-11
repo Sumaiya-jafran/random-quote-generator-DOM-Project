@@ -94,14 +94,17 @@ let arrFood  = quotes.filter(quote => (quote.tag === "food"));
 /***
  * `getRandomQuote` function
  ***/
-
+ clearInterval(myTimer);
 function getRandomQuote(){
     let randomQuoteIndex= Math.floor(Math.random()* quotes.length);
    quoteDisplay.innerText = quotes[randomQuoteIndex].quote;
    source.innerText = quotes[randomQuoteIndex].source;
    citation.innerText = quotes[randomQuoteIndex].citation;
    year.textContent = quotes[randomQuoteIndex].year;
-   source.innerText = `${source.innerText} , ${citation.innerText}, ${year.innerText}`
+   
+    source.innerText = `${source.innerText} , ${citation.innerText}, ${year.innerText}`;
+   
+   
 //    console.log(quotes[randomQuoteIndex].quote);
 }
 
@@ -111,13 +114,18 @@ function sucessQuote(){
     source.innerText = arrSuccess[randomSucess].source;
     citation.innerText = arrSuccess[randomSucess].citation;
     year.textContent  = arrSuccess[randomSucess].year;
-    source.innerText = `${source.innerText}, ${citation.innerText}, ${year.innerText}`
+    if(citation || year){
+        source.innerText = `${source.innerText}, ${citation.innerText}, ${year.innerText}`
+    }
+    
 }
 
 let successBtn = document.querySelector('.success-quote');
 successBtn.addEventListener('click', function(){
+    clearInterval(myTimer);
     sucessQuote();
     randColor();
+   
 })
 
 function foodQuote(){
@@ -127,12 +135,14 @@ function foodQuote(){
     citation.innerText = arrFood[randFoodQuote].citation;
     year.innerText  = arrFood[randFoodQuote].year;
     source.innerText = `${source.innerText}, ${citation.innerText}, ${year.innerText}`
-
+    
 }
-let foofdBtn  = document.querySelector('.food-quote');
-foofdBtn.addEventListener('click', function(){
+let foodBtn  = document.querySelector('.food-quote');
+foodBtn.addEventListener('click', function(){
+    clearInterval(myTimer);
     foodQuote();
     randColor();
+    
 })
 
 /***
@@ -169,11 +179,11 @@ copy.addEventListener('click',function(e){
     //console.log('clicked copy');
 })
 
-
+var myTimer
  //function for set intevel for auto quote using button's click event
 let autoButton = document.getElementById('auto-quote');
 autoButton.addEventListener('click',function(e){
-    setInterval(function(){
+     myTimer = setInterval(function(){
         printQuote();
         randColor();
     
